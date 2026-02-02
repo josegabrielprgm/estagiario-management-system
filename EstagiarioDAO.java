@@ -15,8 +15,10 @@ public class EstagiarioDAO {
 	public void salvar(Estagiario e) {
 		String sql = "INSERT INTO estagiario (cpf, nome, tel, idade) VALUES (?, ?, ?, ? )";
 
-		try (Connection conn = Conexao.conectar(); PreparedStatement ps = conn.prepareStatement(sql)) {
-
+		try {
+			Connection conn = Conexao.conectar();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
 			ps.setString(1, e.getCpf());
 			ps.setString(2, e.getNome());
 			ps.setInt(3, e.getTel());
@@ -62,8 +64,10 @@ public class EstagiarioDAO {
 	public void apagar(String cpf) {
 		String sql = "DELETE FROM estagiario WHERE cpf = ?";
 
-		try (Connection conn = Conexao.conectar(); PreparedStatement ps = conn.prepareStatement(sql)) {
-
+		try {
+			Connection conn = Conexao.conectar();
+			PreparedStatement ps = conn.prepareStatement(sql)
+				
 			ps.setString(1, cpf);
 			ps.executeUpdate();
 			System.out.println("Estagiario apagado do banco!");
@@ -78,8 +82,10 @@ public class EstagiarioDAO {
 
 		String sql = "UPDATE estagiario SET nome = ?, tel = ?, idade = ? WHERE cpf = ?";
 
-		try (Connection conn = Conexao.conectar(); PreparedStatement ps = conn.prepareStatement(sql)) {
-
+		try {
+			Connection conn = Conexao.conectar();
+			PreparedStatement ps = conn.prepareStatement(sql)
+				
 			ps.setString(1, e.getNome());
 			ps.setInt(2, e.getTel());
 			ps.setInt(3, e.getIdade());
@@ -100,3 +106,4 @@ public class EstagiarioDAO {
 	}
 
 }
+
