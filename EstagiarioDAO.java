@@ -39,9 +39,11 @@ public class EstagiarioDAO {
 		List<Estagiario> lista = new ArrayList<>();
 		String sql = "SELECT * FROM estagiario";
 
-		try (Connection conn = Conexao.conectar();
+		try {
+		
+				Connection conn = Conexao.conectar();
 				Statement st = conn.createStatement();
-				ResultSet rs = st.executeQuery(sql)) {
+				ResultSet rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 				Estagiario e = new Estagiario();
@@ -106,4 +108,5 @@ public class EstagiarioDAO {
 	}
 
 }
+
 
